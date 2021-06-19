@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Roboto Condensed", "Roboto", sans-serif;
+}
+
+.layout {
+  text-align: center;
+  height: 100%;
+}
+
+.gamecontainer {
+  height: 500px;
+  width: 500px;
+  border: 2px solid white;
+  margin: 0 auto;
+}
+
+.player1 {
+  height: 20px;
+  width: 3px;
+  border: 1px solid red;
+}
+
+.player2 {
+  height: 20px;
+  width: 3px;
+  border: 1px solid red;
+  float: right;
+}
+
+button {
+  margin-top: 30px;
+}
+
+.layout.petthecat {
+  background-image: url("images/space.jpeg");
+  background-position: bottom;
+  background-size: auto;
+}
+
+.ball.petthecat {
+  background-image: url("images/Olga.png");
+  width: 88px;
+  height: 60px;
+  background-size: 88px 60px;
+}
+
+.layout.jellowar {
+}
