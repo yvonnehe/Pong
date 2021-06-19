@@ -7,23 +7,41 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
+  text-shadow: 0px 0px 20px #000000;
+  font-weight: 500;
 }
 
 h1 {
   font-family: "Roboto Condensed", "Roboto", sans-serif;
   padding-top: 50px;
+  text-shadow: 0px 0px 30px #000000;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  text-shadow: 0px 0px 30px #000000;
+}
+
+button {
+  padding: 7px 25px;
+  border-radius: 15px;
+  border: none;
+  margin: 0 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
 .layout {
   text-align: center;
   height: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
 }
 
 .gamecontainer {
   height: 500px;
   width: 500px;
-  border: 2px solid white;
+  border: 4px solid white;
   margin: 0 auto;
 }
 
@@ -32,6 +50,7 @@ h1 {
   background-size: 31px 70px;
   height: 70px;
   width: 31px;
+  position: absolute;
 }
 
 .player2 {
@@ -39,34 +58,79 @@ h1 {
   background-size: 31px 70px;
   height: 70px;
   width: 31px;
-  float: right;
+  position: absolute;
+  right: 500px;
 }
 
-button {
+.startbutton {
   margin-top: 30px;
 }
 
-.layout.petthecat {
+.petthecatlayout {
   background-image: url("images/space.jpeg");
   background-position: bottom;
   background-size: auto;
 }
 
-.ball.petthecat {
+.petthecatball {
   background-image: url("images/Olga.png");
   width: 88px;
   height: 60px;
   background-size: 88px 60px;
 }
 
-.ball.jellowar {
+/* Gradient from gradientbuttons.colorion.co */
+.petthecatbtn {
+  background-image: linear-gradient(
+    to right,
+    #2b5876 0%,
+    #4e4376 51%,
+    #2b5876 100%
+  );
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /*box-shadow: 0 0 20px #eee; */
+  border-radius: 10px;
+}
+.petthecatbtn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Gradient from gradientbuttons.colorion.co */
+.jellowarbtn {
+  background-image: linear-gradient(
+    to right,
+    #ba8b02 0%,
+    #181818 51%,
+    #ba8b02 100%
+  );
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+.jellowarbtn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.jellowarball {
   background-image: url("images/the-office-jello.png");
   width: 88px;
   height: 67px;
   background-size: 88px 67px;
 }
 
-.layout.jellowar {
+.jellowarlayout {
   background-image: url("images/The-office.jpg");
   background-position: top center;
   background-size: 100%;
