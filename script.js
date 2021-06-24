@@ -108,24 +108,18 @@ function drawScore() {
   ctx.font = "20px 'Roboto'";
   ctx.shadowColor = "black";
   ctx.shadowBlur = 7;
-  ctx.fillText(players[0].score0, canvas.width / 4, canvas.height / 5);
-  ctx.fillText(players[1].score1, (canvas.width / 4) * 3, canvas.height / 5);
+  ctx.fillText(players[0].score0, canvas.width / 4 - 7, canvas.height / 10);
+  ctx.fillText(
+    players[1].score1,
+    (canvas.width / 4) * 3 - 7,
+    canvas.height / 10
+  );
 }
 
 /* Change theme */
 themeButton.addEventListener("click", changeTheme);
 
-function changeTheme() {
-  layout.classList.toggle("jellowarlayout");
-  themeButton.classList.toggle("jellowarbtn");
-  startButton.classList.toggle("jellowarbtn");
-  activeTheme = (activeTheme + 1) % themes.length;
-  themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
-  if (gameTitle.innerHTML === "Pet the Cat") {
-    gameTitle.innerHTML = "Jello War";
-  } else {
-    gameTitle.innerHTML = "Pet the Cat";
-  }
+function changeDesc() {
   if (
     gameDesc.innerHTML ===
     "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game."
@@ -135,6 +129,20 @@ function changeTheme() {
   } else {
     gameDesc.innerHTML =
       "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game.";
+  }
+}
+
+function changeTheme() {
+  layout.classList.toggle("jellowarlayout");
+  themeButton.classList.toggle("jellowarbtn");
+  startButton.classList.toggle("jellowarbtn");
+  activeTheme = (activeTheme + 1) % themes.length;
+  themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
+  changeDesc();
+  if (gameTitle.innerHTML === "Pet the Cat") {
+    gameTitle.innerHTML = "Jello War";
+  } else {
+    gameTitle.innerHTML = "Pet the Cat";
   }
 }
 
