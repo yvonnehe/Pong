@@ -97,6 +97,13 @@ button {
   top: 520px;
 }
 
+.startbutton2 {
+  position: absolute;
+  left: 50%;
+  margin-left: -65px;
+  top: 480px;
+}
+
 /* Gradient from gradientbuttons.colorion.co */
 .petthecatbtn {
   background-image: linear-gradient(
