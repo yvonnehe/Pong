@@ -23,15 +23,6 @@ a {
   text-shadow: 0px 0px 30px #000000;
 }
 
-button {
-  padding: 7px 25px;
-  border-radius: 15px;
-  border: none;
-  margin: 0 10px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-}
-
 .layout {
   text-align: center;
   height: 100%;
@@ -56,24 +47,6 @@ button {
   margin: 0 auto;
 }
 
-.player1 {
-  background-image: url("images/Hand.png");
-  background-size: 31px 70px;
-  height: 70px;
-  width: 31px;
-}
-
-.player2 {
-  background-image: url("images/Hand2.png");
-  background-size: 31px 70px;
-  height: 70px;
-  width: 31px;
-}
-
-.startbutton {
-  margin-top: 30px;
-}
-
 .petthecatlayout {
   background-image: url("images/space.jpeg");
   background-position: bottom;
@@ -85,6 +58,22 @@ button {
   width: 88px;
   height: 60px;
   background-size: 88px 60px;
+}
+
+/* BUTTONS */
+button {
+  padding: 7px 25px;
+  border-radius: 15px;
+  border: none;
+  margin: 0 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.startbutton {
+  position: absolute;
+  left: 45%;
+  top: 470px;
 }
 
 /* Gradient from gradientbuttons.colorion.co */
