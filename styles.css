@@ -24,6 +24,15 @@ a {
   text-shadow: 0px 0px 30px #000000;
 }
 
+input {
+  background-color: transparent;
+  border-style: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
 .gamecontainer {
   max-height: 500px;
   max-width: 500px;
@@ -36,6 +45,20 @@ a {
 .gamedescription {
   margin: 0 auto;
   max-width: 500px;
+  width: 80%;
+}
+
+.gamerules {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 80%;
+}
+
+.gamerules2 {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 80%;
+  padding-top: 10px;
 }
 
 /* LAYOUT THEMES */
@@ -69,7 +92,8 @@ button {
 
 .startbutton {
   position: absolute;
-  left: 45%;
+  left: 50%;
+  margin-left: -65px;
   top: 520px;
 }
 
