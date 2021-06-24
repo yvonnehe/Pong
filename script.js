@@ -1,8 +1,5 @@
-const player1 = document.querySelector(".player1");
-const player2 = document.querySelector(".player2");
 const ball2 = document.querySelector(".ball");
 const layout = document.querySelector(".layout");
-const gameContainer = document.querySelector(".gamecontainer");
 const startButton = document.querySelector(".startbutton");
 const themeButton = document.querySelector(".themebutton");
 
@@ -23,7 +20,7 @@ themeButton.addEventListener("click", changeTheme);
 */
 
 // canvas
-const canvas = document.querySelector(".gamecontainer2");
+const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
 
 //eventlisteners

@@ -38,15 +38,6 @@ a {
   margin: 0 auto;
 }
 
-.gamecontainer2 {
-  max-height: 500px;
-  max-width: 500px;
-  width: 80%;
-  height: 80%;
-  border: 4px solid white;
-  margin: 0 auto;
-}
-
 .petthecatlayout {
   background-image: url("images/space.jpeg");
   background-position: bottom;
