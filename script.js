@@ -57,13 +57,13 @@ const players = [
     posX: 0,
     posY: canvas.height / 2 - 50,
     image: "./images/Hand.png",
-    score: 0,
+    score0: 0,
   },
   {
     posX: canvas.width - 31,
     posY: canvas.height / 2 - 50,
     image: "./images/Hand2.png",
-    score: 0,
+    score1: 0,
   },
 ];
 
@@ -107,6 +107,7 @@ function drawPawn(pawn) {
 function changeTheme() {
   layout.classList.toggle("jellowarlayout");
   themeButton.classList.toggle("jellowarbtn");
+  startButton.classList.toggle("jellowarbtn");
   activeTheme = (activeTheme + 1) % themes.length;
   drawGame(themes[activeTheme]);
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
@@ -114,20 +115,19 @@ function changeTheme() {
 
 //game code
 function checkIfWon() {
-  if (players[0].score >= 11) {
-  } else if (players[1].score >= 11) {
+  if (players[0].score0 >= 11) {
+  } else if (players[1].score1 >= 11) {
   }
 }
 
 function checkIfImpact() {
-  console.log("fuck u");
   if (ball.x <= 0) {
     ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
     ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
     players[0].posY = 200;
     players[1].posY = 200;
     (ball.x = 250), (ball.y = 250); //center
-    players[1].score++;
+    players[1].score1++;
     checkIfWon();
   } else if (ball.x > canvas.width) {
     ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
@@ -135,7 +135,7 @@ function checkIfImpact() {
     players[0].posY = 200;
     players[1].posY = 200;
     (ball.x = 250), (ball.y = 250); //center
-    players[1].score++;
+    players[0].score0++;
     checkIfWon();
   } else if (ball.y <= 0) {
     ball.velocityY = -ball.velocityY;
@@ -213,9 +213,11 @@ function updateBall() {
 
 function drawScore() {
   ctx.fillStyle = "white";
-  ctx.font = "20px serif";
-  ctx.fillText(players[0].score, canvas.width / 4, canvas.height / 5);
-  ctx.fillText(players[1].score, (canvas.width / 4) * 3, canvas.height / 5);
+  ctx.font = "20px 'Roboto'";
+  ctx.shadowColor = "black";
+  ctx.shadowBlur = 7;
+  ctx.fillText(players[0].score0, canvas.width / 4, canvas.height / 5);
+  ctx.fillText(players[1].score1, (canvas.width / 4) * 3, canvas.height / 5);
 }
 
 // start game
@@ -231,6 +233,7 @@ function renderGame() {
 }
 
 function initializeGame() {
+  startButton.style.display = "none";
   createPawn(themes);
   createPlayers();
   renderGame();
