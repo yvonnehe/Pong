@@ -9,6 +9,11 @@ const gameDesc = document.querySelector(".gamedescription");
 const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
 
+/* Local Storage */
+const nameInput = document.querySelector(".nameinput");
+const playPongButton = document.querySelector(".playpongbutton");
+const highScores = document.querySelector(".highscores");
+
 /* Creates things */
 let themes = [
   {
@@ -149,7 +154,9 @@ function changeTheme() {
 /* Game code */
 function checkIfWon() {
   if (players[0].score0 >= 11) {
+    alert("Player 1 wins!");
   } else if (players[1].score1 >= 11) {
+    alert("Player 2 wins!");
   }
 }
 
@@ -243,6 +250,15 @@ function initializeGame() {
   createPawn(themes);
   createPlayers();
   renderGame();
+}
+
+/* Local Storage/High scores */
+playPongButton.addEventListener("click", saveName);
+
+function saveName() {
+  const name = nameInput.value;
+
+  console.log(name);
 }
 
 /* Change theme function not in use
