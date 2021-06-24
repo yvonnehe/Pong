@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
+/* GENERAL STYLES */
 body {
   background-color: black;
   color: white;
@@ -23,12 +24,6 @@ a {
   text-shadow: 0px 0px 30px #000000;
 }
 
-.layout {
-  text-align: center;
-  height: 100%;
-  min-height: 120vh;
-}
-
 .gamecontainer {
   max-height: 500px;
   max-width: 500px;
@@ -38,17 +33,23 @@ a {
   margin: 0 auto;
 }
 
+/* LAYOUT THEMES */
+.layout {
+  text-align: center;
+  height: 100%;
+  min-height: 120vh;
+}
+
 .petthecatlayout {
   background-image: url("images/space.jpeg");
   background-position: bottom;
   background-size: auto;
 }
 
-.petthecatball {
-  background-image: url("images/Olga.png");
-  width: 88px;
-  height: 60px;
-  background-size: 88px 60px;
+.jellowarlayout {
+  background-image: url("images/The-office.jpg");
+  background-position: top center;
+  background-size: 100%;
 }
 
 /* BUTTONS */
@@ -111,15 +112,4 @@ button {
   text-decoration: none;
 }
 
-.jellowarball {
-  background-image: url("images/the-office-jello.png");
-  width: 88px;
-  height: 67px;
-  background-size: 88px 67px;
-}
-
-.jellowarlayout {
-  background-image: url("images/The-office.jpg");
-  background-position: top center;
-  background-size: 100%;
-}
+/* RESPONSIVE STYLES */
