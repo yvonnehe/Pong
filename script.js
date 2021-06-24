@@ -61,6 +61,16 @@ const players = [
   },
 ];
 
+const computer = {
+  posX: 0,
+  posY: canvas.height / 2 - 50,
+  image: "./images/Hand.png",
+  score0: 0,
+};
+
+//computer.y += (ball.y - (computer.y + computer.height/2)) * computerLevel;
+//let computerLevel = 0.1;
+
 let activeTheme = 0;
 
 function createPlayers() {
