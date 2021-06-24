@@ -149,14 +149,14 @@ function changeTheme() {
 
 /* Game code */
 function checkIfWon() {
-  if (players[0].score0 >= 11) {
-    score0 = 11;
+  if (players[0].score0 >= 3) {
     alert("Player 1 wins!");
     ctx.clearRect(0, 0, 9999, 9999);
-  } else if (players[1].score1 >= 11) {
-    score1 = 11;
+    restartGame();
+  } else if (players[1].score1 >= 3) {
     alert("Player 2 wins!");
     ctx.clearRect(0, 0, 9999, 9999);
+    restartGame();
   }
 }
 
@@ -250,6 +250,14 @@ function initializeGame() {
   createPawn(themes);
   createPlayers();
   renderGame();
+}
+
+/* Restart game */
+function restartGame() {
+  ball = { ...ball, x: 250, y: 250, velocityX: 0, velocityY: 0 };
+
+  players = { ...players, score0: 0, score1: 0 };
+  //startButton.style.display = "inline-block";
 }
 
 /* Local Storage/High scores */
