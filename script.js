@@ -3,6 +3,7 @@ const layout = document.querySelector(".layout");
 const startButton = document.querySelector(".startbutton");
 const themeButton = document.querySelector(".themebutton");
 const gameTitle = document.querySelector(".gametitle");
+const gameDesc = document.querySelector(".gamedescription");
 
 /* Canvas */
 const canvas = document.querySelector(".gamecontainer");
@@ -124,6 +125,16 @@ function changeTheme() {
     gameTitle.innerHTML = "Jello War";
   } else {
     gameTitle.innerHTML = "Pet the Cat";
+  }
+  if (
+    gameDesc.innerHTML ===
+    "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game."
+  ) {
+    gameDesc.innerHTML =
+      "Welcome to Dwight and Jim's eternal battle. Any true The Office fan would know - they are always at each other. This time putting stuff in Jello. Who will win?";
+  } else {
+    gameDesc.innerHTML =
+      "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game.";
   }
 }
 
