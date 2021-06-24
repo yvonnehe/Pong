@@ -2,30 +2,13 @@ const ball2 = document.querySelector(".ball");
 const layout = document.querySelector(".layout");
 const startButton = document.querySelector(".startbutton");
 const themeButton = document.querySelector(".themebutton");
+const gameTitle = document.querySelector(".gametitle");
 
-/* 
-function changeTheme() {
-  ball2.classList.toggle("jellowarball");
-  layout.classList.toggle("jellowarlayout");
-  themeButton.classList.toggle("jellowarbtn");
-  if (themeButton.innerHTML === "Jello War") {
-    themeButton.innerHTML = "Pet the cat";
-  } else {
-    themeButton.innerHTML = "Jello War";
-  }
-}
-
-themeButton.addEventListener("click", changeTheme);
-
-*/
-
-// canvas
+/* Canvas */
 const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
 
-//eventlisteners
-themeButton.addEventListener("click", changeTheme);
-
+/* Creates things */
 let themes = [
   {
     button: "Pet the cat",
@@ -48,6 +31,14 @@ let themes = [
     },
   },
 ];
+
+let ball = {
+  x: canvas.width / 2 - 50,
+  y: canvas.height / 2 - 50,
+  velocityX: -3, //olga speed
+  velocityY: 0,
+  image: "",
+};
 
 const players = [
   {
@@ -82,9 +73,9 @@ function createPawn(themes) {
   });
 }
 
+/* Draws things on canvas */
 function drawGame(theme) {
   ctx.clearRect(0, 0, 9999, 9999);
-  //drawPawn(theme.pawn);
   drawPlayers(players);
   drawScore();
 }
@@ -101,6 +92,28 @@ function drawPawn(pawn) {
   //console.log(pawn.pawn, pawn.posX, pawn.posY, 80, 80);
 }
 
+function drawBall() {
+  ctx.drawImage(
+    themes[activeTheme].pawn.pawn,
+    ball.x + ball.velocityX,
+    ball.y + ball.velocityY,
+    80,
+    80
+  );
+}
+
+function drawScore() {
+  ctx.fillStyle = "white";
+  ctx.font = "20px 'Roboto'";
+  ctx.shadowColor = "black";
+  ctx.shadowBlur = 7;
+  ctx.fillText(players[0].score0, canvas.width / 4, canvas.height / 5);
+  ctx.fillText(players[1].score1, (canvas.width / 4) * 3, canvas.height / 5);
+}
+
+/* Change theme */
+themeButton.addEventListener("click", changeTheme);
+
 function changeTheme() {
   layout.classList.toggle("jellowarlayout");
   themeButton.classList.toggle("jellowarbtn");
@@ -110,7 +123,7 @@ function changeTheme() {
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
 }
 
-//game code
+/* Game code */
 function checkIfWon() {
   if (players[0].score0 >= 11) {
   } else if (players[1].score1 >= 11) {
@@ -185,39 +198,12 @@ function movePlayers(e) {
 
 window.addEventListener("keydown", (e) => movePlayers(e));
 
-let ball = {
-  x: canvas.width / 2 - 50,
-  y: canvas.height / 2 - 50,
-  velocityX: -3, //olga speed
-  velocityY: 0,
-  image: "",
-};
-
-function drawBall() {
-  ctx.drawImage(
-    themes[activeTheme].pawn.pawn,
-    ball.x + ball.velocityX,
-    ball.y + ball.velocityY,
-    80,
-    80
-  );
-}
-
 function updateBall() {
   ball.x += ball.velocityX;
   ball.y += ball.velocityY;
 }
 
-function drawScore() {
-  ctx.fillStyle = "white";
-  ctx.font = "20px 'Roboto'";
-  ctx.shadowColor = "black";
-  ctx.shadowBlur = 7;
-  ctx.fillText(players[0].score0, canvas.width / 4, canvas.height / 5);
-  ctx.fillText(players[1].score1, (canvas.width / 4) * 3, canvas.height / 5);
-}
-
-// start game
+/* Start game */
 startButton.addEventListener("click", initializeGame);
 
 function renderGame() {
@@ -236,17 +222,18 @@ function initializeGame() {
   renderGame();
 }
 
-//initializeGame();
-//window.addEventListener("load", () => {
-//initializeGame();
-//});
-
-// responsive shit
-function responsiveGame() {
-  canvas.width = window.innerWidth * 0.8;
-  canvas.height = window.innerHeight * 0.9;
+/* Change theme function not in use
+function changeTheme() {
+  ball2.classList.toggle("jellowarball");
+  layout.classList.toggle("jellowarlayout");
+  themeButton.classList.toggle("jellowarbtn");
+  if (themeButton.innerHTML === "Jello War") {
+    themeButton.innerHTML = "Pet the cat";
+  } else {
+    themeButton.innerHTML = "Jello War";
+  }
 }
 
-window.addEventListener("resize", () => {
-  //responsiveGame();
-});
+themeButton.addEventListener("click", changeTheme);
+
+*/
