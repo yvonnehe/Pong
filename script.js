@@ -149,11 +149,11 @@ function changeTheme() {
 
 /* Game code */
 function checkIfWon() {
-  if (players[0].score0 >= 3) {
+  if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
     ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
-  } else if (players[1].score1 >= 3) {
+  } else if (players[1].score1 >= 11) {
     alert("Player 2 wins!");
     ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
@@ -267,6 +267,10 @@ function saveName() {
   const name = nameInput.value;
 
   console.log(name);
+}
+
+for (let i = 0; i < localStorage.length; i++) {
+  const name = localStorage.key(i);
 }
 
 /* Change theme function not in use
