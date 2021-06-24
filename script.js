@@ -119,8 +119,12 @@ function changeTheme() {
   themeButton.classList.toggle("jellowarbtn");
   startButton.classList.toggle("jellowarbtn");
   activeTheme = (activeTheme + 1) % themes.length;
-  drawGame(themes[activeTheme]);
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
+  if (gameTitle.innerHTML === "Pet the Cat") {
+    gameTitle.innerHTML = "Jello War";
+  } else {
+    gameTitle.innerHTML = "Pet the Cat";
+  }
 }
 
 /* Game code */
