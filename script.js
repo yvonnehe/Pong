@@ -124,26 +124,22 @@ function drawScore() {
 /* Change theme */
 themeButton.addEventListener("click", changeTheme);
 
-function changeDesc() {
-  if (
-    gameDesc.innerHTML ===
-    "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game."
-  ) {
-    gameDesc.innerHTML =
-      "Welcome to Dwight and Jim's eternal battle. Any true The Office fan would know - they are always at each other. This time putting stuff in Jello. Who will win?";
-  } else {
-    gameDesc.innerHTML =
-      "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game.";
-  }
-}
-
 function changeTheme() {
   layout.classList.toggle("jellowarlayout");
   themeButton.classList.toggle("jellowarbtn");
   startButton.classList.toggle("jellowarbtn");
   activeTheme = (activeTheme + 1) % themes.length;
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
-  changeDesc();
+  switch (activeTheme) {
+    case 0:
+      gameDesc.innerHTML =
+        "Meet Olga - she is a very nice cat! She is very loud and chatty. She kind of looks like baby yoda when she's happy, with her ears sticking out. Enjoy her game.";
+      break;
+    case 1:
+      gameDesc.innerHTML =
+        "Welcome to Dwight and Jim's eternal battle. Any true The Office fan would know - they are always at each other. This time putting stuff in Jello. Who will win?";
+      break;
+  }
   if (gameTitle.innerHTML === "Pet the Cat") {
     gameTitle.innerHTML = "Jello War";
   } else {
@@ -154,9 +150,13 @@ function changeTheme() {
 /* Game code */
 function checkIfWon() {
   if (players[0].score0 >= 11) {
+    score0 = 11;
     alert("Player 1 wins!");
+    ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
+    score1 = 11;
     alert("Player 2 wins!");
+    ctx.clearRect(0, 0, 9999, 9999);
   }
 }
 
