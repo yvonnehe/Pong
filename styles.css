@@ -104,6 +104,15 @@ button {
   top: 490px;
 }
 
+.player2div {
+  max-width: 500px;
+  width: 80%;
+  position: absolute;
+  top: 530px;
+  left: 50%;
+  margin-left: -250px;
+}
+
 /* Gradient from gradientbuttons.colorion.co */
 .petthecatbtn {
   background-image: linear-gradient(
