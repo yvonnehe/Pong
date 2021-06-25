@@ -67,7 +67,7 @@ input {
   width: 60px;
   position: absolute;
   top: 350px;
-  right: 20%;
+  right: 18%;
 }
 
 .down {
@@ -75,7 +75,23 @@ input {
   width: 60px;
   position: absolute;
   top: 770px;
-  right: 20%;
+  right: 18%;
+}
+
+.up2 {
+  display: none;
+  width: 60px;
+  position: absolute;
+  top: 350px;
+  left: 18%;
+}
+
+.down2 {
+  display: none;
+  width: 60px;
+  position: absolute;
+  top: 770px;
+  left: 18%;
 }
 
 /* LAYOUT THEMES */
