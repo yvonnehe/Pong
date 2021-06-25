@@ -159,12 +159,12 @@ function changeTheme() {
 function checkIfWon() {
   if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
-    ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
+    ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
     alert("Player 2 wins!");
-    ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
+    ctx.clearRect(0, 0, 9999, 9999);
   }
 }
 
@@ -300,7 +300,7 @@ playPongButton2.addEventListener("click", initializeGame);
 function saveName2() {
   const name2 = nameInput2.value;
   console.log(name2);
-  localStorage.setItem("name2", name);
+  localStorage.setItem("name2", name2);
   player2Div.style.display = "none";
 }
 
@@ -311,7 +311,9 @@ function restartGame() {
   players.map((player) => {
     return { ...player, score0: 0, score1: 0 };
   });
-  //startButton.style.display = "inline-block";
+  ctx.clearRect(0, 0, 9999, 9999);
+  startButton.style.display = "inline-block";
+  startButton2.style.display = "inline-block";
 }
 
 /*
