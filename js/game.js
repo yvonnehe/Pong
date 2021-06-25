@@ -1,6 +1,7 @@
 const ball2 = document.querySelector(".ball");
 const layout = document.querySelector(".layout");
 const startButton = document.querySelector(".startbutton");
+const startButton2 = document.querySelector(".startbutton2");
 const themeButton = document.querySelector(".themebutton");
 const gameTitle = document.querySelector(".gametitle");
 const gameDesc = document.querySelector(".gamedescription");
@@ -8,11 +9,6 @@ const gameDesc = document.querySelector(".gamedescription");
 /* Canvas */
 const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
-
-/* Local Storage */
-const nameInput = document.querySelector(".nameinput");
-const playPongButton = document.querySelector(".playpongbutton");
-const highScores = document.querySelector(".highscores");
 
 /* Creates things */
 let themes = [
@@ -38,6 +34,8 @@ let themes = [
   },
 ];
 
+let activeTheme = 0;
+
 let ball = {
   x: canvas.width / 2 - 50,
   y: canvas.height / 2 - 50,
@@ -60,18 +58,6 @@ const players = [
     score1: 0,
   },
 ];
-
-const computer = {
-  posX: 0,
-  posY: canvas.height / 2 - 50,
-  image: "./images/Hand.png",
-  score0: 0,
-};
-
-//computer.y += (ball.y - (computer.y + computer.height/2)) * computerLevel;
-//let computerLevel = 0.1;
-
-let activeTheme = 0;
 
 function createPlayers() {
   players.forEach((player) => {
@@ -257,6 +243,7 @@ function renderGame() {
 
 function initializeGame() {
   startButton.style.display = "none";
+  startButton2.style.display = "none";
   createPawn(themes);
   createPlayers();
   renderGame();
@@ -270,17 +257,136 @@ function restartGame() {
   //startButton.style.display = "inline-block";
 }
 
-/* Local Storage/High scores */
-playPongButton.addEventListener("click", saveName);
+/* COMPUTER VS PLAYER CODE */
+const computerAndPlayer = [
+  {
+    posX: 0,
+    posY: canvas.height / 2 - 50,
+    image: "./images/Hand.png",
+    score0: 0,
+  },
+  {
+    posX: canvas.width - 31,
+    posY: canvas.height / 2 - 50,
+    image: "./images/Hand2.png",
+    score1: 0,
+  },
+];
 
-function saveName() {
-  const name = nameInput.value;
-
-  console.log(name);
+function createPlayers2() {
+  computerAndPlayer.forEach((player) => {
+    let image = new Image();
+    image.setAttribute("src", player.image);
+    player.pawn = image;
+  });
 }
 
-for (let i = 0; i < localStorage.length; i++) {
-  const name = localStorage.key(i);
+function drawPlayers2(computerAndPlayer) {
+  computerAndPlayer.forEach((player) => {
+    ctx.drawImage(player.pawn, player.posX, player.posY, 31, 70);
+    //console.log(player.pawn, player.posX, player.posY, 31, 70);
+  });
+}
+
+function drawGame2(theme) {
+  ctx.clearRect(0, 0, 9999, 9999);
+  drawPlayers2(players);
+  drawScore();
+}
+
+/* AI Computer */
+let computerLevel = 0.1;
+
+computerAndPlayer[0].y +=
+  (ball.y - (computerAndPlayer[0].y + computerAndPlayer[0].height / 2)) *
+  computerLevel;
+
+/* Game code */
+function checkIfWon2() {
+  if (computerAndPlayer[0].score0 >= 11) {
+    alert("Player 1 wins!");
+    ctx.clearRect(0, 0, 9999, 9999);
+    restartGame();
+  } else if (computerAndPlayer[1].score1 >= 11) {
+    alert("Player 2 wins!");
+    ctx.clearRect(0, 0, 9999, 9999);
+    restartGame();
+  }
+}
+
+function checkIfImpact2() {
+  if (ball.x <= 0) {
+    ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
+    ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
+    computerAndPlayer[0].posY = 200;
+    computerAndPlayer[1].posY = 200;
+    (ball.x = 250), (ball.y = 250); //center
+    computerAndPlayer[1].score1++;
+    checkIfWon2();
+  } else if (ball.x > canvas.width) {
+    ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
+    ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
+    computerAndPlayer[0].posY = 200;
+    computerAndPlayer[1].posY = 200;
+    (ball.x = 250), (ball.y = 250); //center
+    computerAndPlayer[0].score0++;
+    checkIfWon2();
+  } else if (ball.y <= 0) {
+    ball.velocityY = -ball.velocityY;
+  } else if (ball.y >= canvas.height - 80) {
+    ball.velocityY = -ball.velocityY;
+  } else if (
+    ball.x <= 31 &&
+    ball.y >= computerAndPlayer[0].posY - 70 &&
+    ball.y <= computerAndPlayer[0].posY + 70
+  ) {
+    ball.velocityY = (ball.y - computerAndPlayer[0].posY) * 0.05;
+    ball.velocityX = -ball.velocityX; //olga speed
+  } else if (
+    ball.x >= 420 &&
+    ball.y >= computerAndPlayer[1].posY - 70 &&
+    ball.y <= computerAndPlayer[1].posY + 70
+  ) {
+    ball.velocityY = (ball.y - computerAndPlayer[1].posY) * 0.05;
+    ball.velocityX = -ball.velocityX; //olga speed
+  }
+}
+
+function movePlayers2(e) {
+  if (e.code === "ArrowUp" || e.code === "ArrowDown") {
+    e.preventDefault();
+    switch (e.code) {
+      case "ArrowUp":
+        players[1].posY -= 30;
+        break;
+
+      case "ArrowDown":
+        players[1].posY += 30;
+        break;
+    }
+  }
+}
+
+/* Start game 2 */
+startButton2.addEventListener("click", initializeGame2);
+
+function renderGame2() {
+  ctx.clearRect(0, 0, 9999, 9999);
+  drawGame2(themes[0]);
+  drawBall();
+  updateBall();
+  checkIfImpact2();
+  window.requestAnimationFrame(renderGame);
+}
+
+function initializeGame2() {
+  console.log("fuck u");
+  startButton.style.display = "none";
+  startButton2.style.display = "none";
+  createPawn(themes);
+  createPlayers2();
+  renderGame2();
+  window.addEventListener("keydown", (e) => movePlayers2(e));
 }
 
 /* Change theme function not in use
