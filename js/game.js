@@ -1,6 +1,6 @@
-const ball2 = document.querySelector(".ball");
 const layout = document.querySelector(".layout");
 const startButton = document.querySelector(".startbutton");
+const startButton2 = document.querySelector(".startbutton2");
 const themeButton = document.querySelector(".themebutton");
 const gameTitle = document.querySelector(".gametitle");
 const gameDesc = document.querySelector(".gamedescription");
@@ -9,10 +9,13 @@ const gameDesc = document.querySelector(".gamedescription");
 const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
 
+/* Player 2 pop-up */
+const player2Div = document.querySelector(".player2div");
+player2Div.style.display = "none";
+
 /* Local Storage */
-const nameInput = document.querySelector(".nameinput");
-const playPongButton = document.querySelector(".playpongbutton");
-const highScores = document.querySelector(".highscores");
+const nameInput2 = document.querySelector(".nameinput2");
+const playPongButton2 = document.querySelector(".playpongbutton2");
 
 /* Creates things */
 let themes = [
@@ -38,13 +41,18 @@ let themes = [
   },
 ];
 
+let activeTheme = 0;
+let onePlayer = false;
+let AICanMove = true;
+
 let ball = {
-  x: canvas.width / 2 - 50,
-  y: canvas.height / 2 - 50,
-  velocityX: -3, //olga speed
+  posX: canvas.width / 2 - 50,
+  posY: canvas.height / 2 - 50,
+  velocityX: -5, //olga speed
   velocityY: 0,
   image: "",
 };
+let oldBallY = canvas.height / 2 - 50;
 
 const players = [
   {
@@ -60,8 +68,6 @@ const players = [
     score1: 0,
   },
 ];
-
-let activeTheme = 0;
 
 function createPlayers() {
   players.forEach((player) => {
@@ -101,8 +107,8 @@ function drawPawn(pawn) {
 function drawBall() {
   ctx.drawImage(
     themes[activeTheme].pawn.pawn,
-    ball.x + ball.velocityX,
-    ball.y + ball.velocityY,
+    ball.posX + ball.velocityX,
+    ball.posY + ball.velocityY,
     80,
     80
   );
@@ -128,6 +134,8 @@ function changeTheme() {
   layout.classList.toggle("jellowarlayout");
   themeButton.classList.toggle("jellowarbtn");
   startButton.classList.toggle("jellowarbtn");
+  startButton2.classList.toggle("jellowarbtn");
+  playPongButton2.classList.toggle("jellowarbtn");
   activeTheme = (activeTheme + 1) % themes.length;
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
   switch (activeTheme) {
@@ -151,49 +159,49 @@ function changeTheme() {
 function checkIfWon() {
   if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
-    ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
+    ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
     alert("Player 2 wins!");
-    ctx.clearRect(0, 0, 9999, 9999);
     restartGame();
+    ctx.clearRect(0, 0, 9999, 9999);
   }
 }
 
 function checkIfImpact() {
-  if (ball.x <= 0) {
+  if (ball.posX <= 0) {
     ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
     ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
     players[0].posY = 200;
     players[1].posY = 200;
-    (ball.x = 250), (ball.y = 250); //center
+    (ball.posX = 250), (ball.posY = 250); //center
     players[1].score1++;
     checkIfWon();
-  } else if (ball.x > canvas.width) {
+  } else if (ball.posX > canvas.width) {
     ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
     ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
     players[0].posY = 200;
     players[1].posY = 200;
-    (ball.x = 250), (ball.y = 250); //center
+    (ball.posX = 250), (ball.posY = 250); //center
     players[0].score0++;
     checkIfWon();
-  } else if (ball.y <= 0) {
+  } else if (ball.posY <= 0) {
     ball.velocityY = -ball.velocityY;
-  } else if (ball.y >= canvas.height - 80) {
+  } else if (ball.posY >= canvas.height - 80) {
     ball.velocityY = -ball.velocityY;
   } else if (
-    ball.x <= 31 &&
-    ball.y >= players[0].posY - 70 &&
-    ball.y <= players[0].posY + 70
+    ball.posX <= 31 &&
+    ball.posY >= players[0].posY - 70 &&
+    ball.posY <= players[0].posY + 70
   ) {
-    ball.velocityY = (ball.y - players[0].posY) * 0.05;
+    ball.velocityY = (ball.posY - players[0].posY) * 0.05;
     ball.velocityX = -ball.velocityX; //olga speed
   } else if (
-    ball.x >= 420 &&
-    ball.y >= players[1].posY - 70 &&
-    ball.y <= players[1].posY + 70
+    ball.posX >= 420 &&
+    ball.posY >= players[1].posY - 70 &&
+    ball.posY <= players[1].posY + 70
   ) {
-    ball.velocityY = (ball.y - players[1].posY) * 0.05;
+    ball.velocityY = (ball.posY - players[1].posY) * 0.05;
     ball.velocityX = -ball.velocityX; //olga speed
   }
 }
@@ -229,49 +237,86 @@ function movePlayers(e) {
 window.addEventListener("keydown", (e) => movePlayers(e));
 
 function updateBall() {
-  ball.x += ball.velocityX;
-  ball.y += ball.velocityY;
+  ball.posX += ball.velocityX;
+  ball.posY += ball.velocityY;
+  oldBallY = ball.posX += ball.velocityX;
 }
 
 /* Start game */
-startButton.addEventListener("click", initializeGame);
+startButton.addEventListener("click", addPlayer2);
+startButton2.addEventListener("click", () => {
+  onePlayer = true;
+  initializeGame();
+});
+
+function moveAI() {
+  /* AI Computer */
+  let computerLevel = 1;
+  //console.log(ball.posY)
+  if (AICanMove && Math.abs(players[0].posY - ball.posY) > 15) {
+    setTimeout(() => {
+      players[0].posY = (ball.posY - 70 / 2) * (Math.random() * 0.6 + 1);
+    }, 2000 / computerLevel);
+    console.log(players[0].posY);
+    AICanMove = false;
+    setTimeout(() => {
+      AICanMove = true;
+    }, 400 / computerLevel);
+  }
+}
 
 function renderGame() {
+  if (onePlayer) {
+    moveAI();
+  }
+
   ctx.clearRect(0, 0, 9999, 9999);
   drawGame(themes[0]);
   drawBall();
   updateBall();
   checkIfImpact();
+
   window.requestAnimationFrame(renderGame);
 }
 
 function initializeGame() {
   startButton.style.display = "none";
+  startButton2.style.display = "none";
+  saveName2();
   createPawn(themes);
   createPlayers();
   renderGame();
 }
 
-/* Restart game */
-function restartGame() {
-  ball = { ...ball, x: 250, y: 250, velocityX: 0, velocityY: 0 };
-
-  players = { ...players, score0: 0, score1: 0 };
-  //startButton.style.display = "inline-block";
+function addPlayer2() {
+  startButton.style.display = "none";
+  startButton2.style.display = "none";
+  player2Div.style.display = "block";
 }
 
 /* Local Storage/High scores */
-playPongButton.addEventListener("click", saveName);
+playPongButton2.addEventListener("click", initializeGame);
 
-function saveName() {
-  const name = nameInput.value;
-
-  console.log(name);
+function saveName2() {
+  const name2 = nameInput2.value;
+  console.log(name2);
+  localStorage.setItem("name2", name2);
+  player2Div.style.display = "none";
 }
 
-for (let i = 0; i < localStorage.length; i++) {
-  const name = localStorage.key(i);
+/* Restart game */
+function restartGame() {
+  ball = { ...ball, posX: 250, posY: 250, velocityX: 0, velocityY: 0 };
+
+  players.map((player) => {
+    return { ...player, score0: 0, score1: 0 };
+  });
+  ctx.clearRect(0, 0, 9999, 9999);
+  startButton.style.display = "inline-block";
+  startButton2.style.display = "inline-block";
 }
+
+/*
 
 /* Change theme function not in use
 function changeTheme() {
