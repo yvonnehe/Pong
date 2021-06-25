@@ -10,7 +10,7 @@ function saveName() {
   const name = nameInput.value;
   console.log(name);
   localStorage.setItem("name", name);
-  //window.location.href = "game.html";
+  window.location.href = "game.html";
 }
 
 /*
