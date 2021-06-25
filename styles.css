@@ -215,3 +215,145 @@ button {
     display: block;
   }
 }
+
+@media only screen and (max-width: 700px) {
+  .up {
+    right: 16%;
+  }
+
+  .down {
+    right: 16%;
+  }
+
+  .up2 {
+    left: 16%;
+  }
+
+  .down2 {
+    left: 16%;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .up {
+    right: 14%;
+  }
+
+  .down {
+    right: 14%;
+  }
+
+  .up2 {
+    left: 14%;
+  }
+
+  .down2 {
+    left: 14%;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .up {
+    right: 12%;
+  }
+
+  .down {
+    right: 12%;
+  }
+
+  .up2 {
+    left: 12%;
+  }
+
+  .down2 {
+    left: 12%;
+  }
+}
+
+@media only screen and (max-width: 483px) {
+  .up,
+  .up2 {
+    top: 370px;
+  }
+
+  .down,
+  .down2 {
+    top: 790px;
+  }
+}
+
+@media only screen and (max-width: 358px) {
+  .up,
+  .up2 {
+    top: 390px;
+  }
+
+  .down,
+  .down2 {
+    top: 810px;
+  }
+}
+
+@media only screen and (max-width: 289px) {
+  .up,
+  .up2 {
+    top: 410px;
+  }
+
+  .down,
+  .down2 {
+    top: 830px;
+  }
+}
+
+@media only screen and (max-width: 287px) {
+  .up,
+  .up2 {
+    top: 435px;
+  }
+
+  .down,
+  .down2 {
+    top: 855px;
+  }
+
+  .themebutton {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 286px) {
+  .up,
+  .up2 {
+    top: 455px;
+  }
+
+  .down,
+  .down2 {
+    top: 875px;
+  }
+}
+
+@media only screen and (max-width: 278px) {
+  .up,
+  .up2 {
+    top: 475px;
+  }
+
+  .down,
+  .down2 {
+    top: 895px;
+  }
+}
+
+@media only screen and (max-width: 256px) {
+  .up,
+  .up2 {
+    top: 495px;
+  }
+
+  .down,
+  .down2 {
+    top: 915px;
+  }
+}
