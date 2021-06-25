@@ -10,6 +10,14 @@ const gameDesc = document.querySelector(".gamedescription");
 const canvas = document.querySelector(".gamecontainer");
 let ctx = canvas.getContext("2d");
 
+/* Player 2 pop-up */
+const player2Div = document.querySelector(".player2div");
+player2Div.style.display = "none";
+
+/* Local Storage */
+const nameInput2 = document.querySelector(".nameinput2");
+const playPongButton2 = document.querySelector(".playpongbutton2");
+
 /* Creates things */
 let themes = [
   {
@@ -230,7 +238,7 @@ function updateBall() {
 }
 
 /* Start game */
-startButton.addEventListener("click", initializeGame);
+startButton.addEventListener("click", addPlayer2);
 
 function renderGame() {
   ctx.clearRect(0, 0, 9999, 9999);
@@ -242,11 +250,26 @@ function renderGame() {
 }
 
 function initializeGame() {
-  startButton.style.display = "none";
-  startButton2.style.display = "none";
+  saveName2();
   createPawn(themes);
   createPlayers();
   renderGame();
+}
+
+function addPlayer2() {
+  startButton.style.display = "none";
+  startButton2.style.display = "none";
+  player2Div.style.display = "block";
+}
+
+/* Local Storage/High scores */
+playPongButton2.addEventListener("click", initializeGame);
+
+function saveName2() {
+  const name2 = nameInput2.value;
+  console.log(name2);
+  localStorage.setItem("name2", name);
+  player2Div.style.display = "none";
 }
 
 /* Restart game */
