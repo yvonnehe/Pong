@@ -61,6 +61,23 @@ input {
   padding-top: 10px;
 }
 
+/* Arrows */
+.up {
+  display: none;
+  width: 60px;
+  position: absolute;
+  top: 350px;
+  right: 20%;
+}
+
+.down {
+  display: none;
+  width: 60px;
+  position: absolute;
+  top: 770px;
+  right: 20%;
+}
+
 /* LAYOUT THEMES */
 .layout {
   text-align: center;
@@ -174,4 +191,11 @@ button {
 
 @media only screen and (max-width: 760px) {
   /* Styles for phones */
+  .up {
+    display: block;
+  }
+
+  .down {
+    display: block;
+  }
 }
