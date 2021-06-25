@@ -17,6 +17,12 @@ player2Div.style.display = "none";
 const nameInput2 = document.querySelector(".nameinput2");
 const playPongButton2 = document.querySelector(".playpongbutton2");
 
+/* Arrows */
+const up = document.querySelector(".up");
+const down = document.querySelector(".down");
+const up2 = document.querySelector(".up2");
+const down2 = document.querySelector(".down2");
+
 /* Creates things */
 let themes = [
   {
@@ -159,11 +165,11 @@ function changeTheme() {
 function checkIfWon() {
   if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
-    restartGame();
+    stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
     alert("Player 2 wins!");
-    restartGame();
+    stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   }
 }
@@ -286,6 +292,15 @@ function initializeGame() {
   createPawn(themes);
   createPlayers();
   renderGame();
+  ball = {
+    ...ball,
+    posX: canvas.width / 2 - 50,
+    posY: canvas.height / 2 - 50,
+    velocityX: -5, //olga speed
+    velocityY: 0,
+  };
+  players[0].score0 = 0;
+  players[1].score1 = 0;
 }
 
 function addPlayer2() {
@@ -304,13 +319,16 @@ function saveName2() {
   player2Div.style.display = "none";
 }
 
-/* Restart game */
-function restartGame() {
-  ball = { ...ball, posX: 250, posY: 250, velocityX: 0, velocityY: 0 };
+/* Stop game */
+function stopGame() {
+  ball = {
+    ...ball,
+    posX: canvas.width / 2 - 50,
+    posY: canvas.height / 2 - 50,
+    velocityX: 0,
+    velocityY: 0,
+  };
 
-  players.map((player) => {
-    return { ...player, score0: 0, score1: 0 };
-  });
   ctx.clearRect(0, 0, 9999, 9999);
   startButton.style.display = "inline-block";
   startButton2.style.display = "inline-block";
@@ -331,5 +349,16 @@ function changeTheme() {
 }
 
 themeButton.addEventListener("click", changeTheme);
+
+*/
+
+/* 
+
+Maybe useful?? 
+
+var md = new MobileDetect(window.navigator.userAgent);
+if( md.tablet() || !md.phone() ) {
+    // your code here
+}
 
 */
