@@ -93,15 +93,15 @@ button {
 .startbutton {
   position: absolute;
   left: 50%;
-  margin-left: -65px;
-  top: 520px;
+  margin-left: -58.5px;
+  top: 530px;
 }
 
 .startbutton2 {
   position: absolute;
   left: 50%;
-  margin-left: -65px;
-  top: 480px;
+  margin-left: -54px;
+  top: 490px;
 }
 
 /* Gradient from gradientbuttons.colorion.co */
