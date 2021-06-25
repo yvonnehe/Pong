@@ -307,6 +307,10 @@ function addPlayer2() {
   startButton.style.display = "none";
   startButton2.style.display = "none";
   player2Div.style.display = "block";
+  if (window.innerWidth < 760) {
+    up2.style.display = "block";
+    down2.style.display = "block";
+  }
 }
 
 /* Local Storage/High scores */
