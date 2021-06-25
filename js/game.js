@@ -132,6 +132,8 @@ function changeTheme() {
   layout.classList.toggle("jellowarlayout");
   themeButton.classList.toggle("jellowarbtn");
   startButton.classList.toggle("jellowarbtn");
+  startButton2.classList.toggle("jellowarbtn");
+  playPongButton2.classList.toggle("jellowarbtn");
   activeTheme = (activeTheme + 1) % themes.length;
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
   switch (activeTheme) {
