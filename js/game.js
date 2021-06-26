@@ -16,6 +16,8 @@ player2Div.style.display = "none";
 /* Local Storage */
 const nameInput2 = document.querySelector(".nameinput2");
 const playPongButton2 = document.querySelector(".playpongbutton2");
+const highScores = document.querySelector(".highscores");
+const pongWinners = document.querySelector(".pongwinners");
 
 /* Arrows */
 const up = document.querySelector(".up");
@@ -169,10 +171,23 @@ function changeTheme() {
 function checkIfWon() {
   if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
+    //localStorage.getItem("name");
+    const nameOfPlayer = localStorage.getItem("name");
+    winners.unshift(nameOfPlayer);
+    console.log(nameOfPlayer);
+    scores.unshift("11");
+    console.log(winners);
+    console.log(scores);
     stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
     alert("Player 2 wins!");
+    const nameOfPlayer2 = localStorage.getItem("name2");
+    winners.unshift(nameOfPlayer2);
+    console.log(nameOfPlayer2);
+    scores.unshift("11");
+    console.log(winners);
+    console.log(scores);
     stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   }
@@ -267,7 +282,7 @@ function moveAI() {
     setTimeout(() => {
       players[0].posY = (ball.posY - 70 / 2) * (Math.random() * 0.6 + 1);
     }, 2000 / computerLevel);
-    console.log(players[0].posY);
+    //console.log(players[0].posY);
     AICanMove = false;
     setTimeout(() => {
       AICanMove = true;
@@ -278,6 +293,8 @@ function moveAI() {
 function renderGame() {
   if (onePlayer) {
     moveAI();
+    up2.style.display = "none";
+    down2.style.display = "none";
   }
 
   ctx.clearRect(0, 0, 9999, 9999);
@@ -325,6 +342,18 @@ function saveName2() {
   console.log(name2);
   localStorage.setItem("name2", name2);
   player2Div.style.display = "none";
+}
+
+let winners = [];
+let scores = [];
+
+function getHighScores() {
+  winners.forEach((winner) => {
+    pongWinners.innerHTML += `<p class="score">${winner}</p>`;
+  });
+  scores.forEach((score) => {
+    highScores.innerHTML += `<p class="score">${score}</p>`;
+  });
 }
 
 /* Stop game */
