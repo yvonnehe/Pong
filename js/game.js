@@ -19,13 +19,13 @@ const playPongButton2 = document.querySelector(".playpongbutton2");
 
 /* Arrows */
 const up = document.querySelector(".up");
-up.addEventListener("click", () => movePlayers({ code: "KeyW" }));
+up.addEventListener("click", () => movePlayers({ code: "ArrowUp" }));
 const down = document.querySelector(".down");
-down.addEventListener("click", () => movePlayers({ code: "KeyS" }));
+down.addEventListener("click", () => movePlayers({ code: "ArrowDown" }));
 const up2 = document.querySelector(".up2");
-up2.addEventListener("click", () => movePlayers({ code: "ArrowUp" }));
+up2.addEventListener("click", () => movePlayers({ code: "KeyW" }));
 const down2 = document.querySelector(".down2");
-down2.addEventListener("click", () => movePlayers({ code: "ArrowDown" }));
+down2.addEventListener("click", () => movePlayers({ code: "KeyS" }));
 
 /* Creates things */
 let themes = [
@@ -223,9 +223,7 @@ function movePlayers(e) {
     e.code === "KeyW" ||
     e.code === "KeyS"
   ) {
-    if (e.type === "keypress") {
-      e.preventDefault();
-    }
+    e.preventDefault();
     switch (e.code) {
       case "ArrowUp":
         players[1].posY -= 30;
