@@ -61,6 +61,13 @@ input {
   padding-top: 10px;
 }
 
+.back {
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 /* Arrows */
 .up {
   display: none;
