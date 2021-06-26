@@ -178,6 +178,8 @@ function checkIfWon() {
     scores.unshift("11");
     console.log(winners);
     console.log(scores);
+    totalWinners.push(winners[0] + " " + date);
+    localStorage.setItem("winners", JSON.stringify(totalWinners));
     stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
@@ -347,14 +349,41 @@ function saveName2() {
 let winners = [];
 let scores = [];
 
-function getHighScores() {
-  winners.forEach((winner) => {
-    pongWinners.innerHTML += `<p class="score">${winner}</p>`;
-  });
-  scores.forEach((score) => {
-    highScores.innerHTML += `<p class="score">${score}</p>`;
-  });
+function saveArrays() {
+  Storage.prototype.setObj = function (winnersobj, winners) {
+    return this.setItem(winnersobj, JSON.stringify(winners));
+  };
+  // Storage.prototype.getObj = function(key) {
+  //     return JSON.parse(this.getItem(key))
+  // }
 }
+
+let totalWinners = [];
+
+const winnerFromLocalStorage = JSON.parse(localStorage.getItem("winners"));
+if (winnerFromLocalStorage !== null) {
+  totalWinners = winnerFromLocalStorage;
+}
+
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes();
+var date =
+  today.getFullYear() +
+  "-" +
+  (today.getMonth() + 1) +
+  "-" +
+  today.getDate() +
+  " " +
+  time;
+
+// function getHighScores() {
+//   winners.forEach((winner) => {
+//     pongWinners.innerHTML += `<p class="score">${winner}</p>`;
+//   });
+//   scores.forEach((score) => {
+//     highScores.innerHTML += `<p class="score">${score}</p>`;
+//   });
+// }
 
 /* Stop game */
 function stopGame() {
