@@ -173,13 +173,13 @@ function checkIfWon() {
     alert("Player 1 wins!");
     //localStorage.getItem("name");
     const nameOfPlayer = localStorage.getItem("name");
-    winners.unshift(nameOfPlayer);
+    !onePlayer && winners.unshift(nameOfPlayer);
     console.log(nameOfPlayer);
     scores.unshift("11");
     console.log(winners);
     console.log(scores);
-    totalWinners.push(winners[0] + " " + date);
-    localStorage.setItem("winners", JSON.stringify(totalWinners));
+    !onePlayer && totalWinners.unshift(winners[0] + " " + date);
+    !onePlayer && localStorage.setItem("winners", JSON.stringify(totalWinners));
     stopGame();
     ctx.clearRect(0, 0, 9999, 9999);
   } else if (players[1].score1 >= 11) {
