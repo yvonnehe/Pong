@@ -102,6 +102,7 @@ function drawGame(theme) {
   ctx.clearRect(0, 0, 9999, 9999);
   drawPlayers(players);
   drawScore();
+  drawNames();
 }
 
 function drawPlayers(players) {
@@ -131,12 +132,28 @@ function drawScore() {
   ctx.font = "20px 'Roboto'";
   ctx.shadowColor = "black";
   ctx.shadowBlur = 7;
-  ctx.fillText(players[0].score0, canvas.width / 4 - 7, canvas.height / 10);
+  ctx.textAlign = "center";
+  ctx.fillText(players[0].score0, canvas.width / 4 - 7, canvas.height / 8);
   ctx.fillText(
     players[1].score1,
     (canvas.width / 4) * 3 - 7,
-    canvas.height / 10
+    canvas.height / 8
   );
+}
+
+function drawNames() {
+  ctx.fillStyle = "white";
+  ctx.font = "16px 'Roboto'";
+  ctx.shadowColor = "black";
+  ctx.textAlign = "center";
+  ctx.shadowBlur = 7;
+  const nameOfPlayer = localStorage.getItem("name");
+  const nameOfPlayer2 = localStorage.getItem("name2");
+  !onePlayer &&
+    ctx.fillText(nameOfPlayer, canvas.width / 4 - 7, canvas.height / 15);
+  ctx.fillText(nameOfPlayer2, (canvas.width / 4) * 3 - 7, canvas.height / 15);
+  onePlayer &&
+    ctx.fillText(nameOfPlayer, (canvas.width / 4) * 3 - 7, canvas.height / 15);
 }
 
 /* Change theme */
@@ -171,7 +188,6 @@ function changeTheme() {
 function checkIfWon() {
   if (players[0].score0 >= 11) {
     alert("Player 1 wins!");
-    //localStorage.getItem("name");
     const nameOfPlayer = localStorage.getItem("name");
     !onePlayer && winners.unshift(nameOfPlayer);
     console.log(nameOfPlayer);
