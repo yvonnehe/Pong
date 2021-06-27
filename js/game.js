@@ -187,7 +187,8 @@ function changeTheme() {
 /* Game code */
 function checkIfWon() {
   if (players[0].score0 >= 11) {
-    alert("Player 1 wins!");
+    !onePlayer && alert("Player 1 wins!");
+    onePlayer && alert("Computer wins!");
     const nameOfPlayer = localStorage.getItem("name");
     !onePlayer && winners.unshift(nameOfPlayer);
     console.log(nameOfPlayer);
@@ -346,6 +347,7 @@ function addPlayer2() {
   startButton.style.display = "none";
   startButton2.style.display = "none";
   player2Div.style.display = "block";
+  onePlayer = false;
   if (window.innerWidth < 760) {
     up2.style.display = "block";
     down2.style.display = "block";
@@ -365,15 +367,6 @@ function saveName2() {
 let winners = [];
 let scores = [];
 
-function saveArrays() {
-  Storage.prototype.setObj = function (winnersobj, winners) {
-    return this.setItem(winnersobj, JSON.stringify(winners));
-  };
-  // Storage.prototype.getObj = function(key) {
-  //     return JSON.parse(this.getItem(key))
-  // }
-}
-
 let totalWinners = [];
 
 const winnerFromLocalStorage = JSON.parse(localStorage.getItem("winners"));
@@ -391,15 +384,6 @@ var date =
   today.getDate() +
   " " +
   time;
-
-// function getHighScores() {
-//   winners.forEach((winner) => {
-//     pongWinners.innerHTML += `<p class="score">${winner}</p>`;
-//   });
-//   scores.forEach((score) => {
-//     highScores.innerHTML += `<p class="score">${score}</p>`;
-//   });
-// }
 
 /* Stop game */
 function stopGame() {
