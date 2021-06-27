@@ -73,7 +73,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 350px;
+  top: 380px;
   right: 18%;
 }
 
@@ -81,7 +81,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 770px;
+  top: 800px;
   right: 18%;
 }
 
@@ -89,7 +89,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 350px;
+  top: 380px;
   left: 18%;
 }
 
@@ -97,7 +97,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 770px;
+  top: 800px;
   left: 18%;
 }
 
@@ -134,18 +134,18 @@ button {
   position: absolute;
   left: 50%;
   margin-left: -58.5px;
-  top: 530px;
+  top: 560px;
 }
 
 .startbutton2 {
   position: absolute;
   left: 50%;
   margin-left: -54px;
-  top: 490px;
+  top: 520px;
 }
 
 .player2div {
-  max-width: 320px;
+  max-width: 350px;
   width: 80%;
   position: absolute;
   top: 530px;
@@ -197,6 +197,136 @@ button {
   text-decoration: none;
 }
 
+/* Select */
+.speeddiv {
+  max-width: 320px;
+  width: 80%;
+  margin: 0 auto;
+  /*display: none;*/
+  /*position: absolute;
+  top: 530px;
+  left: 50%;
+  margin-left: -160px;*/
+}
+
+.custom-select {
+  width: 120px;
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-image: linear-gradient(
+    to right,
+    #2b5876 0%,
+    #4e4376 51%,
+    #2b5876 100%
+  );
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+}
+
+.select-selected-jello {
+  background-image: linear-gradient(
+    to right,
+    #ba8b02 0%,
+    #181818 51%,
+    #ba8b02 100%
+  );
+  text-align: left;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  color: #ffffff;
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-image: linear-gradient(
+    to right,
+    #2b5876 0%,
+    #4e4376 51%,
+    #2b5876 100%
+  );
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.select-items-jello {
+  background-image: linear-gradient(
+    to right,
+    #ba8b02 0%,
+    #181818 51%,
+    #ba8b02 100%
+  );
+  text-align: left;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 /* RESPONSIVE STYLES */
 @media screen and (max-width: 395px) {
   .playpongbutton2 {
@@ -206,7 +336,7 @@ button {
     max-width: 190px;
     width: 80%;
     position: absolute;
-    top: 530px;
+    top: 560px;
     left: 50%;
     margin-left: -95px;
   }
@@ -280,48 +410,48 @@ button {
 @media only screen and (max-width: 483px) {
   .up,
   .up2 {
-    top: 370px;
+    top: 400px;
   }
 
   .down,
   .down2 {
-    top: 790px;
+    top: 820px;
   }
 }
 
 @media only screen and (max-width: 358px) {
   .up,
   .up2 {
-    top: 390px;
+    top: 420px;
   }
 
   .down,
   .down2 {
-    top: 810px;
+    top: 840px;
   }
 }
 
 @media only screen and (max-width: 289px) {
   .up,
   .up2 {
-    top: 410px;
+    top: 440px;
   }
 
   .down,
   .down2 {
-    top: 830px;
+    top: 870px;
   }
 }
 
 @media only screen and (max-width: 287px) {
   .up,
   .up2 {
-    top: 435px;
+    top: 465px;
   }
 
   .down,
   .down2 {
-    top: 855px;
+    top: 885px;
   }
 
   .themebutton {
@@ -332,35 +462,35 @@ button {
 @media only screen and (max-width: 286px) {
   .up,
   .up2 {
-    top: 455px;
+    top: 485px;
   }
 
   .down,
   .down2 {
-    top: 875px;
+    top: 905px;
   }
 }
 
 @media only screen and (max-width: 278px) {
   .up,
   .up2 {
-    top: 475px;
+    top: 505px;
   }
 
   .down,
   .down2 {
-    top: 895px;
+    top: 925px;
   }
 }
 
 @media only screen and (max-width: 256px) {
   .up,
   .up2 {
-    top: 495px;
+    top: 525px;
   }
 
   .down,
   .down2 {
-    top: 915px;
+    top: 945px;
   }
 }
