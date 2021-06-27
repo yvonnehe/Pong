@@ -60,7 +60,7 @@ let AICanMove = true;
 let ball = {
   posX: canvas.width / 2 - 50,
   posY: canvas.height / 2 - 50,
-  velocityX: -5, //olga speed
+  velocityX: -3, //olga speed
   velocityY: 0,
   image: "",
 };
@@ -336,7 +336,7 @@ function initializeGame() {
     ...ball,
     posX: canvas.width / 2 - 50,
     posY: canvas.height / 2 - 50,
-    velocityX: -5, //olga speed
+    velocityX: -3, //olga speed
     velocityY: 0,
   };
   players[0].score0 = 0;
