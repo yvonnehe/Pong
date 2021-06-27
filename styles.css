@@ -153,6 +153,16 @@ button {
   margin-left: -160px;
 }
 
+.speeddiv {
+  max-width: 320px;
+  width: 80%;
+  display: none;
+  position: absolute;
+  top: 530px;
+  left: 50%;
+  margin-left: -160px;
+}
+
 /* Gradient from gradientbuttons.colorion.co */
 .petthecatbtn {
   background-image: linear-gradient(

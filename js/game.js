@@ -18,6 +18,13 @@ const nameInput2 = document.querySelector(".nameinput2");
 const playPongButton2 = document.querySelector(".playpongbutton2");
 const highScores = document.querySelector(".highscores");
 const pongWinners = document.querySelector(".pongwinners");
+/*
+ */ /* Choose speed */ /*
+const speedDiv = document.querySelector(".speeddiv");
+const speed1 = document.querySelector(".speed1");
+const speed1 = document.querySelector(".speed2");
+const speed1 = document.querySelector(".speed3");
+*/
 
 /* Arrows */
 const up = document.querySelector(".up");
@@ -352,10 +359,18 @@ function addPlayer2() {
     up2.style.display = "block";
     down2.style.display = "block";
   }
-}
+} /*
+} 
 
 /* Local Storage/High scores */
-playPongButton2.addEventListener("click", initializeGame);
+
+/*
+function chooseSpeed() {
+  speedDiv.style.display = "block";
+  /* stuff here */ playPongButton2.addEventListener(
+  "click",
+  initializeGame
+);
 
 function saveName2() {
   const name2 = nameInput2.value;
