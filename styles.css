@@ -336,7 +336,7 @@ button {
     max-width: 190px;
     width: 80%;
     position: absolute;
-    top: 530px;
+    top: 560px;
     left: 50%;
     margin-left: -95px;
   }
@@ -410,48 +410,48 @@ button {
 @media only screen and (max-width: 483px) {
   .up,
   .up2 {
-    top: 370px;
+    top: 400px;
   }
 
   .down,
   .down2 {
-    top: 790px;
+    top: 820px;
   }
 }
 
 @media only screen and (max-width: 358px) {
   .up,
   .up2 {
-    top: 390px;
+    top: 420px;
   }
 
   .down,
   .down2 {
-    top: 810px;
+    top: 840px;
   }
 }
 
 @media only screen and (max-width: 289px) {
   .up,
   .up2 {
-    top: 410px;
+    top: 440px;
   }
 
   .down,
   .down2 {
-    top: 830px;
+    top: 870px;
   }
 }
 
 @media only screen and (max-width: 287px) {
   .up,
   .up2 {
-    top: 435px;
+    top: 465px;
   }
 
   .down,
   .down2 {
-    top: 855px;
+    top: 885px;
   }
 
   .themebutton {
@@ -462,35 +462,35 @@ button {
 @media only screen and (max-width: 286px) {
   .up,
   .up2 {
-    top: 455px;
+    top: 485px;
   }
 
   .down,
   .down2 {
-    top: 875px;
+    top: 905px;
   }
 }
 
 @media only screen and (max-width: 278px) {
   .up,
   .up2 {
-    top: 475px;
+    top: 505px;
   }
 
   .down,
   .down2 {
-    top: 895px;
+    top: 925px;
   }
 }
 
 @media only screen and (max-width: 256px) {
   .up,
   .up2 {
-    top: 495px;
+    top: 525px;
   }
 
   .down,
   .down2 {
-    top: 915px;
+    top: 945px;
   }
 }
