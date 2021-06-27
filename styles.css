@@ -153,16 +153,6 @@ button {
   margin-left: -160px;
 }
 
-.speeddiv {
-  max-width: 320px;
-  width: 80%;
-  display: none;
-  position: absolute;
-  top: 530px;
-  left: 50%;
-  margin-left: -160px;
-}
-
 /* Gradient from gradientbuttons.colorion.co */
 .petthecatbtn {
   background-image: linear-gradient(
@@ -205,6 +195,136 @@ button {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+/* Select */
+.speeddiv {
+  max-width: 320px;
+  width: 80%;
+  margin: 0 auto;
+  /*display: none;*/
+  /*position: absolute;
+  top: 530px;
+  left: 50%;
+  margin-left: -160px;*/
+}
+
+.custom-select {
+  width: 120px;
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-image: linear-gradient(
+    to right,
+    #2b5876 0%,
+    #4e4376 51%,
+    #2b5876 100%
+  );
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+}
+
+.select-selected-jello {
+  background-image: linear-gradient(
+    to right,
+    #ba8b02 0%,
+    #181818 51%,
+    #ba8b02 100%
+  );
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  color: #ffffff;
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-image: linear-gradient(
+    to right,
+    #2b5876 0%,
+    #4e4376 51%,
+    #2b5876 100%
+  );
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.select-items-jello {
+  background-image: linear-gradient(
+    to right,
+    #ba8b02 0%,
+    #181818 51%,
+    #ba8b02 100%
+  );
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* RESPONSIVE STYLES */

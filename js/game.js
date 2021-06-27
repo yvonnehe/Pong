@@ -18,13 +18,11 @@ const nameInput2 = document.querySelector(".nameinput2");
 const playPongButton2 = document.querySelector(".playpongbutton2");
 const highScores = document.querySelector(".highscores");
 const pongWinners = document.querySelector(".pongwinners");
-/*
- */ /* Choose speed */ /*
+
+/* Choose speed */
 const speedDiv = document.querySelector(".speeddiv");
-const speed1 = document.querySelector(".speed1");
-const speed1 = document.querySelector(".speed2");
-const speed1 = document.querySelector(".speed3");
-*/
+const speedSelector = document.querySelector("#speedSelector");
+speedSelector.addEventListener("change", setDifficulty);
 
 /* Arrows */
 const up = document.querySelector(".up");
@@ -35,6 +33,10 @@ const up2 = document.querySelector(".up2");
 up2.addEventListener("click", () => movePlayers({ code: "KeyW" }));
 const down2 = document.querySelector(".down2");
 down2.addEventListener("click", () => movePlayers({ code: "KeyS" }));
+
+/* Select */
+const selectSelected = document.querySelector(".select-selected");
+const selectItems = document.querySelector(".select-items");
 
 /* Creates things */
 let themes = [
@@ -59,10 +61,7 @@ let themes = [
     },
   },
 ];
-
 let activeTheme = 0;
-let onePlayer = false;
-let AICanMove = true;
 
 let ball = {
   posX: canvas.width / 2 - 50,
@@ -87,6 +86,12 @@ const players = [
     score1: 0,
   },
 ];
+
+let onePlayer = false;
+let AICanMove = true;
+
+const defaultSpeed = 5;
+let difficultyLevel = 1;
 
 function createPlayers() {
   players.forEach((player) => {
@@ -172,6 +177,8 @@ function changeTheme() {
   startButton.classList.toggle("jellowarbtn");
   startButton2.classList.toggle("jellowarbtn");
   playPongButton2.classList.toggle("jellowarbtn");
+  selectSelected.classList.toggle("select-selected-jello");
+  selectItems.classList.toggle("select-items-jello");
   activeTheme = (activeTheme + 1) % themes.length;
   themeButton.innerHTML = themes[(activeTheme + 1) % 2].button;
   switch (activeTheme) {
@@ -221,16 +228,16 @@ function checkIfWon() {
 
 function checkIfImpact() {
   if (ball.posX <= 0) {
-    ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
-    ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
+    ball.velocityX = Math.random() > 0.4 ? -defaultSpeed - 3 : defaultSpeed - 3;
+    ball.velocityY = Math.random() > 0.4 ? Math.random() : -Math.random();
     players[0].posY = 200;
     players[1].posY = 200;
     (ball.posX = 250), (ball.posY = 250); //center
     players[1].score1++;
     checkIfWon();
   } else if (ball.posX > canvas.width) {
-    ball.velocityX = Math.random() > 0.5 ? -1.5 : 1.5;
-    ball.velocityY = Math.random() > 0.5 ? Math.random() : -Math.random();
+    ball.velocityX = Math.random() > 0.4 ? defaultSpeed - 3 : -defaultSpeed - 3;
+    ball.velocityY = Math.random() > 0.4 ? -Math.random() : Math.random();
     players[0].posY = 200;
     players[1].posY = 200;
     (ball.posX = 250), (ball.posY = 250); //center
@@ -246,25 +253,31 @@ function checkIfImpact() {
     ball.posY <= players[0].posY + 70
   ) {
     ball.velocityY = (ball.posY - players[0].posY) * 0.05;
-    ball.velocityX = -ball.velocityX; //olga speed
+    ball.velocityX =
+      (defaultSpeed - Math.abs(ball.velocityY)) * (0.5 + 0.5 * difficultyLevel); //olga speed
   } else if (
     ball.posX >= 420 &&
     ball.posY >= players[1].posY - 70 &&
     ball.posY <= players[1].posY + 70
   ) {
     ball.velocityY = (ball.posY - players[1].posY) * 0.05;
-    ball.velocityX = -ball.velocityX; //olga speed
+    ball.velocityX =
+      (-defaultSpeed - Math.abs(ball.velocityY)) *
+      (0.5 + 0.5 * difficultyLevel);
   }
 }
 
 function movePlayers(e) {
+  console.log(e.type);
   if (
     e.code === "ArrowUp" ||
     e.code === "ArrowDown" ||
     e.code === "KeyW" ||
     e.code === "KeyS"
   ) {
-    e.preventDefault();
+    if (e.type === "keypress" || e.type === "keydown") {
+      e.preventDefault();
+    }
     switch (e.code) {
       case "ArrowUp":
         players[1].posY -= 30;
@@ -300,19 +313,24 @@ startButton2.addEventListener("click", () => {
   initializeGame();
 });
 
+playPongButton2.addEventListener("click", initializeGame);
+
 function moveAI() {
   /* AI Computer */
-  let computerLevel = 1;
+  let difficultyLevel = 1;
   //console.log(ball.posY)
-  if (AICanMove && Math.abs(players[0].posY - ball.posY) > 15) {
+  if (
+    AICanMove &&
+    Math.abs(players[0].posY - ball.posY) > 15 / difficultyLevel
+  ) {
     setTimeout(() => {
       players[0].posY = (ball.posY - 70 / 2) * (Math.random() * 0.6 + 1);
-    }, 2000 / computerLevel);
+    }, 2000 / difficultyLevel);
     //console.log(players[0].posY);
     AICanMove = false;
     setTimeout(() => {
       AICanMove = true;
-    }, 400 / computerLevel);
+    }, 450 / (difficultyLevel * 1.2));
   }
 }
 
@@ -359,18 +377,14 @@ function addPlayer2() {
     up2.style.display = "block";
     down2.style.display = "block";
   }
-} /*
-} 
+}
+
+function setDifficulty(e) {
+  difficultyLevel = parseFloat(e.target.value);
+  console.log(difficultyLevel);
+}
 
 /* Local Storage/High scores */
-
-/*
-function chooseSpeed() {
-  speedDiv.style.display = "block";
-  /* stuff here */ playPongButton2.addEventListener(
-  "click",
-  initializeGame
-);
 
 function saveName2() {
   const name2 = nameInput2.value;
@@ -414,6 +428,93 @@ function stopGame() {
   startButton.style.display = "inline-block";
   startButton2.style.display = "inline-block";
 }
+
+/* Custom select from w3schools */
+var x, i, j, l, ll, selElmnt, a, b, c;
+/* Look for any elements with the class "custom-select": */
+x = document.getElementsByClassName("custom-select");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  /* For each element, create a new DIV that will act as the selected item: */
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /* For each element, create a new DIV that will contain the option list: */
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    /* For each option in the original select element,
+    create a new DIV that will act as an option item: */
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function (e) {
+      /* When an item is clicked, update the original select box,
+        and the selected item: */
+      var y, i, k, s, h, sl, yl;
+      s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+      sl = s.length;
+      h = this.parentNode.previousSibling;
+      for (i = 0; i < sl; i++) {
+        if (s.options[i].innerHTML == this.innerHTML) {
+          s.selectedIndex = i;
+          h.innerHTML = this.innerHTML;
+          y = this.parentNode.getElementsByClassName("same-as-selected");
+          yl = y.length;
+          for (k = 0; k < yl; k++) {
+            y[k].removeAttribute("class");
+          }
+          this.setAttribute("class", "same-as-selected");
+          break;
+        }
+      }
+      h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function (e) {
+    /* When the select box is clicked, close any other select boxes,
+    and open/close the current select box: */
+    e.stopPropagation();
+    closeAllSelect(this);
+    this.nextSibling.classList.toggle("select-hide");
+    this.classList.toggle("select-arrow-active");
+  });
+}
+
+function closeAllSelect(elmnt) {
+  /* A function that will close all select boxes in the document,
+  except the current select box: */
+  var x,
+    y,
+    i,
+    xl,
+    yl,
+    arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i);
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+
+/* If the user clicks anywhere outside the select box,
+then close all select boxes: */
+document.addEventListener("click", closeAllSelect);
 
 /*
 
