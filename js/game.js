@@ -35,8 +35,13 @@ const down2 = document.querySelector(".down2");
 down2.addEventListener("click", () => movePlayers({ code: "KeyS" }));
 
 /* Select */
-const selectSelected = document.querySelector(".select-selected");
-const selectItems = document.querySelector(".select-items");
+/* Select */
+let selectSelected;
+let selectItems;
+window.onload = () => {
+  selectSelected = document.querySelector(".select-selected");
+  selectItems = document.querySelector(".select-items");
+};
 
 /* Creates things */
 let themes = [

@@ -73,7 +73,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 350px;
+  top: 380px;
   right: 18%;
 }
 
@@ -81,7 +81,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 770px;
+  top: 800px;
   right: 18%;
 }
 
@@ -89,7 +89,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 350px;
+  top: 380px;
   left: 18%;
 }
 
@@ -97,7 +97,7 @@ input {
   display: none;
   width: 60px;
   position: absolute;
-  top: 770px;
+  top: 800px;
   left: 18%;
 }
 
@@ -134,18 +134,18 @@ button {
   position: absolute;
   left: 50%;
   margin-left: -58.5px;
-  top: 530px;
+  top: 560px;
 }
 
 .startbutton2 {
   position: absolute;
   left: 50%;
   margin-left: -54px;
-  top: 490px;
+  top: 520px;
 }
 
 .player2div {
-  max-width: 320px;
+  max-width: 350px;
   width: 80%;
   position: absolute;
   top: 530px;
@@ -245,7 +245,7 @@ button {
     #181818 51%,
     #ba8b02 100%
   );
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
@@ -308,7 +308,7 @@ button {
     #181818 51%,
     #ba8b02 100%
   );
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
